@@ -7,9 +7,12 @@ const ScreenShot = [...document.querySelectorAll('.screenshot')]
 
 function activeImg () {
     this.classList.toggle('active');
+    this.removeEventListener('click', activeImg);
     setTimeout(() => {
         this.classList.toggle('activeZIndex');
-    }, '500');
+        // Защита от встратых Кошкодевок
+        this.addEventListener('click', activeImg);
+    }, '600');
 }
 
 for ( let i = 0 ; i < ScreenShot.length ; i++ ) {
